@@ -33,6 +33,16 @@ variable "compartment_ocid" {}
 variable "ssh_public_key" {}
 variable "region" {}
 
+terraform {
+  required_version = ">= 0.16, < 1.16" // this example is intended to run with Terraform v1.15
+  required_providers {
+    oci = {
+      source  = "oracle/oci"
+      version = ">= 3.27, < 6.0" // force downloading oci-provider compatible with terraform v1.15
+    }
+  }
+}
+
 provider "oci" {
   tenancy_ocid         = var.tenancy_ocid
   user_ocid            = var.user_ocid
@@ -57,7 +67,6 @@ export TF_VAR_user_ocid=<api.user_OCID>
 export TF_VAR_compartment_ocid=<Demo_Compartment_OCID>
 
 export TF_VAR_fingerprint=$(cat ~/.oci/oci_api_key_fingerprint)
-
 export TF_VAR_private_key_path=~/.oci/oci_api_key.pem
 
 export TF_VAR_ssh_public_key=$(cat ~/.ssh/id_rsa.pub)
