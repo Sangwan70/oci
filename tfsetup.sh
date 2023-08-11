@@ -5,7 +5,7 @@ echo WARNING - THIS SCRIPT WILL OVERWRITE ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub
 echo
 read -p "Press enter to continue"
 
-sudo yum -y install terraform python3-oci-cli bzip2 cpio zip unzip dos2unix dialog curl jq git golang iputils wget screen tmux
+sudo yum -y install terraform python36-oci-cli bzip2 cpio zip unzip dos2unix dialog curl jq git golang iputils wget tmux
 
 yes "y" | ssh-keygen -N "" -f ~/.ssh/id_rsa
 
@@ -34,7 +34,7 @@ variable "ssh_public_key" {}
 variable "region" {}
 
 terraform {
-  required_version = ">= 0.16, < 1.16" // this example is intended to run with Terraform v1.15
+  required_version = ">= 1.0, < 1.20" // this example is intended to run with Terraform v1.15
   required_providers {
     oci = {
       source  = "oracle/oci"
@@ -72,7 +72,7 @@ export TF_VAR_private_key_path=~/.oci/oci_api_key.pem
 export TF_VAR_ssh_public_key=$(cat ~/.ssh/id_rsa.pub)
 export TF_VAR_ssh_private_key=$(cat ~/.ssh/id_rsa)
 
-export TF_VAR_region=us-ashburn-1
+export TF_VAR_region=eu-frankfurt-1
 EOF
 
 
