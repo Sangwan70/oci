@@ -34,11 +34,11 @@ variable "ssh_public_key" {}
 variable "region" {}
 
 terraform {
-  required_version = ">= 1.0, < 1.20" // this example is intended to run with Terraform v1.15
+  required_version = ">= 1.5.7" // To run with Terraform v1.5.7
   required_providers {
     oci = {
       source  = "oracle/oci"
-      version = ">= 3.27, < 6.0" // force downloading oci-provider compatible with terraform v1.15
+      version = ">= 6.7.0" // force oci-provider compatible with terraform v1.5.7
     }
   }
 }
@@ -72,7 +72,7 @@ export TF_VAR_private_key_path=~/.oci/oci_api_key.pem
 export TF_VAR_ssh_public_key=$(cat ~/.ssh/id_rsa.pub)
 export TF_VAR_ssh_private_key=$(cat ~/.ssh/id_rsa)
 
-export TF_VAR_region=eu-frankfurt-1
+export TF_VAR_region=us-ashburn-1
 EOF
 
 
